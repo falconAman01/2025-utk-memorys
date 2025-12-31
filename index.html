@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2025 Memories</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Toffee, Poppins, sans-serif;
+    }
+
+    /* ===== ULTRA PREMIUM ANIMATED BACKGROUND ===== */
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: #fff;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(0, 255, 255, 0.2), transparent 35%),
+        radial-gradient(circle at 85% 25%, rgba(255, 0, 255, 0.18), transparent 40%),
+        radial-gradient(circle at 50% 85%, rgba(255, 215, 0, 0.15), transparent 38%),
+        radial-gradient(circle at 70% 70%, rgba(138, 43, 226, 0.12), transparent 35%),
+        linear-gradient(135deg, #0a0e27, #1a1535, #0f0b28, #050816);
+      background-size: 250% 250%;
+      animation: bgFlow 30s ease infinite;
+    }
+
+    @keyframes bgFlow {
+
+      0%,
+      100% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+    }
+
+    /* Premium floating particles */
+    .particle {
+      position: fixed;
+      width: 3px;
+      height: 3px;
+      background: #fff;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: float 15s linear infinite;
+      opacity: .6;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+      }
+
+      100% {
+        transform: translateY(-100vh) rotate(360deg);
+      }
+    }
+
+    /* Enhanced glow orbs */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: .4;
+      animation: floatOrb 35s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .orb.cyan {
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, #00ffff, #00ccff);
+      top: 8%;
+      left: 3%;
+    }
+
+    .orb.pink {
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, #ff00ff, #ff1493);
+      top: 55%;
+      left: 68%;
+      animation-delay: -10s;
+    }
+
+    .orb.gold {
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, #ffd700, #ffaa00);
+      top: 28%;
+      left: 38%;
+      animation-delay: -20s;
+    }
+
+    .orb.purple {
+      width: 290px;
+      height: 290px;
+      background: radial-gradient(circle, #8a2be2, #9370db);
+      top: 70%;
+      left: 15%;
+      animation-delay: -15s;
+    }
+
+    @keyframes floatOrb {
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      25% {
+        transform: translate(80px, -60px) scale(1.1);
+      }
+
+      50% {
+        transform: translate(-40px, 80px) scale(.9);
+      }
+
+      75% {
+        transform: translate(60px, 40px) scale(1.05);
+      }
+    }
+
+    /* ================= COUNTDOWN BOX ================= */
+    .box {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 40px 50px;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(20px) saturate(180%);
+      border: 1.5px solid rgba(255, 255, 255, 0.18);
+      text-align: center;
+      box-shadow:
+        0 8px 32px rgba(0, 255, 255, .2),
+        0 0 60px rgba(255, 0, 255, .15),
+        inset 0 0 40px rgba(255, 255, 255, .03);
+      width: min(92%, 550px);
+      z-index: 10;
+      animation: boxEntrance 1s ease;
+    }
+
+    @keyframes boxEntrance {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(.9);
+      }
+
+      to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 7vw, 3.6rem);
+      font-weight: 700;
+      background: linear-gradient(120deg, #00ffff, #ff00ff, #ffd700, #00ffff);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 3s linear infinite;
+      text-shadow: 0 0 30px rgba(0, 255, 255, .3);
+    }
+
+    @keyframes shimmer {
+      to {
+        background-position: 200% center;
+      }
+    }
+
+    p {
+      margin-top: 14px;
+      color: #e0ffff;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    input {
+      margin-top: 20px;
+      padding: 14px 18px;
+      width: 100%;
+      border-radius: 14px;
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      font-size: 1rem;
+      transition: .3s;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #00ffff;
+      box-shadow: 0 0 20px rgba(0, 255, 255, .4);
+    }
+
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 14px 32px;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      background: linear-gradient(135deg, #00ffff, #00ccff);
+      color: #000;
+      transition: .3s;
+      box-shadow: 0 5px 25px rgba(0, 255, 255, .4);
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 35px rgba(0, 255, 255, .6);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .wish {
+      margin: 18px 0;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      opacity: .95;
+    }
+
+    .mem-btn {
+      display: none;
+      margin-top: 30px;
+      background: linear-gradient(135deg, #ff00ff, #ffd700, #00ffff);
+      background-size: 200% auto;
+      color: #000;
+      box-shadow: 0 5px 30px rgba(255, 215, 0, .5);
+      animation: btnPulse 2.5s infinite, shimmer 3s linear infinite;
+      font-size: 1.1rem;
+    }
+
+    @keyframes btnPulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.06);
+      }
+    }
+
+    #countdown {
+      margin-top: 15px;
+      font-size: clamp(1.5rem, 6vw, 2.5rem);
+      font-weight: 700;
+      background: linear-gradient(90deg, #00ffff, #ff00ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 40px rgba(0, 255, 255, .5);
+    }
+
+    /* ================= MEMORY PAGE ================= */
+    #memoryScreen {
+      display: none;
+      min-height: 100vh;
+      padding-bottom: 60px;
+    }
+
+    .header {
+      padding: 35px 20px;
+      text-align: center;
+      position: relative;
+      z-index: 5;
+    }
+
+    .header h1 {
+      font-size: clamp(2rem, 7vw, 3.5rem);
+      margin-bottom: 8px;
+    }
+
+    .subline {
+      opacity: .85;
+      margin-top: 10px;
+      font-size: 1.1rem;
+      color: #b0e0e6;
+    }
+
+    .extra-wish {
+      margin-top: 18px;
+      font-size: 1rem;
+      line-height: 1.8;
+      opacity: .9;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Enhanced Gallery Grid */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 0 20px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .card {
+      opacity: 0;
+      transform: translateY(40px) scale(.95);
+      transition: .7s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .card.show {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .frame {
+      width: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: .4s cubic-bezier(.4, 0, .2, 1);
+      box-shadow:
+        0 8px 25px rgba(0, 0, 0, .3),
+        0 0 30px rgba(0, 255, 255, .15);
+      border: 1.5px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .frame:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow:
+        0 15px 40px rgba(0, 0, 0, .4),
+        0 0 50px rgba(0, 255, 255, .3);
+      border-color: rgba(0, 255, 255, 0.4);
+    }
+
+    .frame.landscape {
+      aspect-ratio: 16/10;
+    }
+
+    .frame.portrait {
+      aspect-ratio: 9/14;
+    }
+
+    .frame.square {
+      aspect-ratio: 1/1;
+    }
+
+    .placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      color: #fff;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, .3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .placeholder::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg,
+          transparent,
+          rgba(255, 255, 255, .1),
+          transparent);
+      animation: shine 3s infinite;
+    }
+
+    @keyframes shine {
+      0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+      }
+
+      100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+      }
+    }
+
+    /* Color variations */
+    .placeholder.c1 {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+    }
+
+    .placeholder.c2 {
+      background: linear-gradient(135deg, #f093fb, #f5576c);
+    }
+
+    .placeholder.c3 {
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
+    }
+
+    .placeholder.c4 {
+      background: linear-gradient(135deg, #43e97b, #38f9d7);
+    }
+
+    .placeholder.c5 {
+      background: linear-gradient(135deg, #fa709a, #fee140);
+    }
+
+    .placeholder.c6 {
+      background: linear-gradient(135deg, #30cfd0, #330867);
+    }
+
+    /* Fullscreen Viewer */
+    .viewer {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .95);
+      backdrop-filter: blur(10px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      animation: fadeIn .3s;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .viewer img {
+      max-width: 92%;
+      max-height: 88%;
+      border-radius: 20px;
+      box-shadow: 0 10px 60px rgba(0, 255, 255, .4);
+      animation: zoomIn .4s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    @keyframes zoomIn {
+      from {
+        opacity: 0;
+        transform: scale(.8);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .viewer .close {
+      position: absolute;
+      top: 25px;
+      right: 25px;
+      font-size: 2rem;
+      cursor: pointer;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      backdrop-filter: blur(10px);
+      transition: .3s;
+    }
+
+    .viewer .close:hover {
+      background: rgba(255, 0, 0, 0.3);
+      transform: rotate(90deg);
+    }
+
+    /* Responsive */
+    @media(max-width:640px) {
+      .gallery {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .box {
+        padding: 30px 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Floating orbs -->
+  <div class="orb cyan"></div>
+  <div class="orb pink"></div>
+  <div class="orb gold"></div>
+  <div class="orb purple"></div>
+
+  <!-- COUNTDOWN BOX -->
+  <div class="box" id="countBox">
+    <div id="namePage">
+      <h1>✨ Welcome ✨</h1>
+      <p>Let's make this New Year special together</p>
+      <input id="username" placeholder="Enter your name" autocomplete="off">
+      <button onclick="startDemo()">Begin Journey</button>
+    </div>
+
+    <div id="countPage" style="display:none;">
+      <h1>🎉 New Year Countdown 🎉</h1>
+      <p class="wish">
+        Wishing you joy, success & endless possibilities ✨<br>
+        May 2025 bring you closer to your dreams 🌟<br>
+        A journey of hope, love & beautiful moments 🎆
+      </p>
+      <div id="countdown"></div>
+      <button class="mem-btn" id="memBtn" onclick="openMemory()">💖 Explore Special Memories</button>
+    </div>
+  </div>
+
+  <!-- MEMORY SCREEN -->
+  <div id="memoryScreen">
+    <div class="header">
+      <h1 id="wishText"></h1>
+      <p class="subline">Friends • Classmates • Mentors • Memories</p>
+      <p class="extra-wish">
+        Celebrating every shared smile, every heartfelt conversation, and every unforgettable adventure 💫<br>
+        Here's to the bonds that inspire us and the memories that define us ✨<br>
+        May our journey together continue to shine brighter with each passing year 🌟
+      </p>
+    </div>
+    <div class="gallery" id="gallery"></div>
+  </div>
+
+  <!-- Viewer -->
+  <div class="viewer" id="viewer">
+    <div class="close" onclick="closeViewer()">✖</div>
+    <img id="viewerImg">
+    <video id="viewerVideo" controls
+                                                                                                                            style="display:none;max-width:92%;max-height:88%;border-radius:20px;box-shadow:0 10px 60px rgba(0,255,255,.4);"></video>
+  </div>
+
+  <!-- Background Music -->
+  <audio id="bgMusic" loop>
+    <source src="music/bg.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // Create floating particles  
+for(let i=0;i<30;i++){  
+  const p=document.createElement('div');  
+  p.className='particle';  
+  p.style.left=Math.random()*100+'%';  
+  p.style.animationDelay=Math.random()*15+'s';  
+  p.style.animationDuration=(10+Math.random()*10)+'s';  
+  document.body.appendChild(p);  
+}  
+  
+let userName="Friend";  
+let countdownInterval;  
+  
+function capitalizeName(name){  
+  return name.toLowerCase().split(" ").map(  
+    w=>w.charAt(0).toUpperCase()+w.slice(1)  
+  ).join(" ");  
+}  
+  
+function startDemo(){  
+  const n=username.value.trim();  
+  if(!n){  
+    username.style.borderColor='#ff6b6b';  
+    username.focus();  
+    return;  
+  }  
+  userName=capitalizeName(n);  
+  
+  namePage.style.display="none";  
+  countPage.style.display="block";  
+  
+  updateCountdown();
+  countdownInterval = setInterval(updateCountdown, 1000);
+}
+
+function updateCountdown() {
+  const now = new Date();
+  const newYear = new Date(now.getFullYear() + 1, 0, 1, 0, 0, 0);
+  
+  const diff = newYear - now;
+  
+  if (diff <= 0) {
+    clearInterval(countdownInterval);
+    countdown.innerText = "🎆 Happy New Year! 🎆";
+    memBtn.style.display = "inline-block";
+    return;
+  }
+  
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+  
+  countdown.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+}  
+  
+function openMemory(){  
+  countBox.style.display="none";  
+  memoryScreen.style.display="block";  
+  wishText.innerText=`💖 Happy New Year ${userName}! 💖`;
+  bgMusic.play();
+}  
+  
+// Gallery with varied layouts & colors  
+const colors=['c1','c2','c3','c4','c5','c6'];  
+const ratios=['square','square','square','square','square','square'];  
+const bgMusic=document.getElementById('bgMusic');
+  
+for(let i=1;i<=30;i++){  
+  const card=document.createElement("div");  
+  card.className="card";  
+  card.style.transitionDelay=(i*0.05)+'s';  
+  
+  const frame=document.createElement("div");  
+  frame.className="frame "+ratios[i%ratios.length];  
+  
+  // Check if this is the video slot (slot #1)
+  if(i===1){
+    const video=document.createElement("video");
+    video.src="video/v1.mp4";
+    video.style.width="100%";
+    video.style.height="100%";
+    video.style.objectFit="contain";
+    video.style.backgroundColor="rgba(0,0,0,0.3)";
+    video.muted=true;
+    video.loop=true;
+    video.onerror=function(){
+      const ph=document.createElement("div");
+      ph.className="placeholder "+colors[i%colors.length];
+      ph.innerText="#"+(i<10?'0'+i:i);
+      this.replaceWith(ph);
+    };
+    frame.appendChild(video);
+    frame.onclick=()=>openViewer(i,true);
+  }else{
+    const img=document.createElement("img");
+    img.src=`image/p${i}.png`;
+    img.style.width="100%";
+    img.style.height="100%";
+    img.style.objectFit="contain";
+    img.style.backgroundColor="rgba(0,0,0,0.3)";
+    img.onerror=function(){
+      const ph=document.createElement("div");
+      ph.className="placeholder "+colors[i%colors.length];
+      ph.innerText="#"+(i<10?'0'+i:i);
+      this.replaceWith(ph);
+    };
+    frame.appendChild(img);
+    frame.onclick=()=>openViewer(i,false);
+  }  
+  
+  card.appendChild(frame);  
+  gallery.appendChild(card);  
+}  
+  
+// Intersection Observer  
+const obs=new IntersectionObserver(e=>{  
+  e.forEach(x=>{  
+    if(x.isIntersecting){  
+      x.target.classList.add("show");  
+      obs.unobserve(x.target);  
+    }  
+  });  
+},{threshold:.2});  
+  
+document.querySelectorAll(".card").forEach(c=>obs.observe(c));  
+  
+function openViewer(num,isVideo){  
+  viewer.style.display="flex";
+  if(isVideo){
+    viewerImg.style.display="none";
+    viewerVideo.style.display="block";
+    viewerVideo.src="video/v1.mp4";
+    viewerVideo.play();
+    bgMusic.pause();
+  }else{
+    viewerVideo.style.display="none";
+    viewerImg.style.display="block";
+    viewerImg.src=`image/p${num}.png`;
+  }
+}  
+  
+function closeViewer(){  
+  viewer.style.display="none";
+  viewerVideo.pause();
+  viewerVideo.currentTime=0;
+  bgMusic.play();
+}  
+  
+// ESC key to close viewer  
+document.addEventListener('keydown',e=>{  
+  if(e.key==='Escape')closeViewer();  
+});  
+  </script>
+</body>
+
+</html>
